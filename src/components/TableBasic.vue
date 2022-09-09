@@ -1,4 +1,5 @@
 <script>
+import TableElement from "./TableElement.vue";
 export default {
   props: {
     data: {
@@ -27,24 +28,38 @@ export default {
   },
   created() {
     this.csv = "";
-    this.order = this.columnOrder
-      ? this.columnOrder
-      : [...Array(this.data.length)];
   },
   render(createElement) {
     return createElement("table", {}, [
-      // createElement("thead", {}, [
-      //   createElement("tr", {}, this.$slots.default),
-      // ]), removed for draggable
-      createElement("thead", {}, this.$slots.default),
+      createElement("thead", {}, [
+        createElement(
+          TableElement,
+          {
+            props: {
+              type: "tr",
+              order: this.columnOrder,
+            },
+          },
+          this.$slots.default
+        ),
+      ]),
       createElement(
         "tbody",
         {},
         this.data.map((row) =>
-          createElement("tr", {}, this.$scopedSlots.body(row, this.addCsv))
+          createElement(
+            TableElement,
+            {
+              props: {
+                type: "tr",
+                order: this.columnOrder,
+              },
+            },
+            this.$scopedSlots.body(row, this.addCsv)
+          )
         )
       ),
-      createElement("tr", {}, this.csv),
+      createElement("tr", {}, this.order),
     ]);
   },
 };
