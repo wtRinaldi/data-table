@@ -13,6 +13,13 @@
       </template>
     </table-basic>
     <button @click="getData">Get CSV</button>
+    <div>
+      <div draggable="true">1</div>
+      <div draggable="true">2</div>
+      <div draggable="true">3</div>
+      <div draggable="true">4</div>
+      <div draggable="true">5</div>
+    </div>
   </div>
 </template>
 

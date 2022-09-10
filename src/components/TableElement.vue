@@ -11,7 +11,6 @@ export default {
   },
   computed: {
     hasNewOrder() {
-      debugger;
       return this.order && this.order.length > 0;
     },
   },
