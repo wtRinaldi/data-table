@@ -1,57 +1,60 @@
 <template>
   <div id="app">
-    <table-basic
-      :data="tableData"
-      :columnOrder="renderOrder"
-      ref="dataTable"
-    >
-      <table-element type="th">Currency</table-element>
-      <table-element type="th">Amount</table-element>
-      <template v-slot:body="data, csv">
-        <table-element>{{ csv(data.currency) }}</table-element>
-        <table-element>{{ csv(data.amount, 'end') }}</table-element>
-      </template>
-    </table-basic>
-    <button @click="getData">Get CSV</button>
-    <div>
-      <div draggable="true">1</div>
-      <div draggable="true">2</div>
-      <div draggable="true">3</div>
-      <div draggable="true">4</div>
-      <div draggable="true">5</div>
+    <div class="px-16">
+      <table-basic
+        :data="tableData"
+        :columnOrder="renderOrder"
+        ref="dataTable"
+      >
+        <table-header drag>Currency</table-header>
+        <table-header drag>Amount</table-header>
+        <table-header drag>Color</table-header>
+        <template v-slot:body="data, csv">
+          <table-element>{{ csv(data.currency) }}</table-element>
+          <table-element>{{ csv(data.amount) }}</table-element>
+          <table-element>{{ csv(data.color, 'end') }}</table-element>
+        </template>
+      </table-basic>
     </div>
+    <button @click="getData">Get CSV</button>
   </div>
 </template>
 
 <script>
 import TableBasic from "./components/TableBasic.vue";
 import TableElement from "./components/TableElement.vue";
+import TableHeader from "./components/TableHeader.vue";
 
 export default {
   name: "App",
   components: {
     TableBasic,
     TableElement,
+    TableHeader,
   },
   data() {
     return {
-      renderOrder: [1, 0],
+      renderOrder: [2, 1, 0],
       tableData: [
         {
           amount: 10,
           currency: "USD",
+          color: "green",
         },
         {
           amount: 20,
           currency: "RUB",
+          color: "blue",
         },
         {
           amount: 30,
           currency: "YEN",
+          color: "purple",
         },
         {
           amount: 40,
           currency: "DEM",
+          color: "red",
         },
       ],
     };
