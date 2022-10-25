@@ -6,7 +6,7 @@ export default {
       type: Boolean,
     },
   },
-  inject: ["dragStart", "addDragColumn"],
+  inject: ["dragStart"],
   render(createElement) {
     return createElement("th", {}, [
       createElement(

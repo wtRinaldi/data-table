@@ -9,10 +9,10 @@
         <table-header drag>Currency</table-header>
         <table-header drag>Amount</table-header>
         <table-header drag>Color</table-header>
-        <template v-slot:body="data, csv">
-          <table-element>{{ csv(data.currency) }}</table-element>
-          <table-element>{{ csv(data.amount) }}</table-element>
-          <table-element>{{ csv(data.color, 'end') }}</table-element>
+        <template v-slot:body="data">
+          <table-element>{{ data.currency }}</table-element>
+          <table-element>{{ data.amount }}</table-element>
+          <table-element>{{ data.color }}</table-element>
         </template>
       </table-basic>
     </div>
@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      renderOrder: [2, 1, 0],
+      renderOrder: [0, 1, 2],
       tableData: [
         {
           amount: 10,
